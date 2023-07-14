@@ -1,0 +1,26 @@
+# General
+.DS_Store
+eslintrc.json
+prettierrc.json
+
+# dependencies
+node_modules/
+.babelrc
+
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# output from webpack
+dist/
+
+# zip file for initial aws deployment
+*.zip
+
+# jest coverage
+coverage/
+
+.vscode/
+.env
