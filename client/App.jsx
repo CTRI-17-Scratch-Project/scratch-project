@@ -1,11 +1,22 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './styles.css';
 
 const App = () => {
-  return (
-    <p>App</p>
-  );
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    if (localStorage.getItem('username') === null) {
+      return navigate('/login');
+    }
+
+    // make a GET request to server using localstorage.getItem('username')
+    // for each Plant item received, create a new plant card and render to screen
+  }, []);
+
+
+
+  return (<p>App.jsx</p>);
 };
 
 export default App;
