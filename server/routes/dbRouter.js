@@ -1,6 +1,7 @@
 const express = require('express');
 
 //TODO: require relevant controller(s)
+const plantController = require('../controllers/plantController');
 
 const dbRouter = express.Router();
 
@@ -9,9 +10,10 @@ dbRouter.get('/', (req, res) => {
   return res.status(200).json({});
 });
 
-dbRouter.post('/', (req, res) => {
+dbRouter.post('/', plantController.createPlant, (req, res) => {
   console.log('I am in the router to the database (POST)');
-  return res.status(200).json({});
+  console.log(res.locals.newPlant);
+  return res.status(200).json(res.locals.newPlant);
 });
 
 dbRouter.delete('/', (req, res) => {
