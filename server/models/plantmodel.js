@@ -16,7 +16,6 @@ const plantSchema = new Schema({
 	Family: String,
 	Other_names: String,
 	Common_name: String,
-	Description: String,
 	Categories: String,
 	Origin: String,
 	Climat: String,
@@ -27,23 +26,18 @@ const plantSchema = new Schema({
 	Color_of_blooms: String,
 	Blooming_season: String,
 	Pruning: String,
-	Style: String,
 });
 
 const Plant = mongoose.model('plant', plantSchema);
 
-module.exports = Plant;
+// module.exports = Plant;
 
-// const personSchema = new Schema({
-//   firstName: String,
-//   lastName: String,
-//   username: String,
-//   password: String,
+const userSchema = new Schema({
+	username: String,
+	plants: [plantSchema],
+});
 
-//   plants: [plantSchema],
-// });
-
-// const Person = mongoose.model('person', personSchema);
+const User = mongoose.model('person', userSchema);
 
 // module.exports = Person;
 //idea of subdocs embedded in a parent doc
@@ -67,20 +61,20 @@ module.exports = Plant;
 //   })
 //   .catch(err => console.log(err));
 
-// Img: 'String',
-// Id: 'String',
-// Family: 'String',
-// Other_names: 'String,'
-// Common_name: 'String',
-// Description: 'String',
-// Categories: 'String',
-// Origin: 'String'
-// Climat: 'String',
-// Zone: 'String',
-// Light_ideal: 'String',
-// Light_tolered: 'String',
-// Watering: 'String',
-// Color_of_blooms: 'String'
-// Blooming_season: 'String'
-// Pruning: 'String',
-// Style: 'String'
+// "Img:"'String"g,
+// "Id" : "String",
+// "Family": "String",
+// "Other_names": "String",
+// "Common_name": "String",
+// "Description": "String",
+// "Categories": "String",
+// "Origin": "String",
+// "Climat": "String",
+// "Zone": "String",
+// "Light_ideal": "String",
+// "Light_tolered": "String",
+// "Watering": "String",
+// "Color_of_blooms": "String","
+// """,""Bloomi"ng"season": "String"
+// ""Prun"in"": "St"ing"
+// "Style": "String"

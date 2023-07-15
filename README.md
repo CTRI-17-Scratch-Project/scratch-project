@@ -1,4 +1,5 @@
 # scratch-project
+
 <!-- Latin name
 Img **
 Id **
@@ -179,3 +180,24 @@ Use -->
     "Climat": "Subtropical"
   }
 ] -->
+<!-- {
+    "Img": "String",
+    "Id": "String",
+    "Family": "String",
+    "Other_names": "String",
+    "Common_name": "String",
+    "Description": "String",
+    "Categories": "String",
+    "Origin": "String",
+    "Climat": "String",
+    "Zone": "String",
+    "Light_ideal": "String",
+    "Light_tolered": "String",
+    "Watering": "String",
+    "Color_of_blooms": "String",
+    "Blooming_season": "String",
+    "Pruning": "String",
+    "Style": "String",
+    "_id": "64b2da3c320424f3de9d5ad4",
+    "__v": 0
+} -->
