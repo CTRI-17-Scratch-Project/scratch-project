@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server/server.js",
-		"build": "cross-env NODE_ENV=production webpack",
-		"dev": "NODE_ENV=development nodemon server/server.js & NODE_ENV=development webpack serve",
-		"dev_test": "NODE_ENV=development webpack serve"
+    "build": "cross-env NODE_ENV=production webpack",
+    "dev": "NODE_ENV=development nodemon server/server.js & NODE_ENV=development webpack serve",
+    "dev_test": "NODE_ENV=development webpack serve"
   },
   "keywords": [],
   "author": "",
@@ -19,11 +19,11 @@
     "mongoose": "^7.3.4",
     "nodemon": "^3.0.1",
     "path": "^0.12.7",
-    "webpack": "^5.88.1",
+    "prettier": "^3.0.0",
     "react": "^18.2.0",
     "react-router": "^4.3.1",
-    "sass-loader": "^12.3.0"
-    
+    "sass-loader": "^12.3.0",
+    "webpack": "^5.88.1"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
@@ -43,10 +43,4 @@
     "webpack-dev-server": "^4.5.0",
     "webpack-hot-middleware": "^2.24.3"
   }
-
-
 }
-
-
-
-
