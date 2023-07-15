@@ -1,22 +1,23 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
+// import {users} from './Signup.jsx'
+const users = {
+  kevin: '1234',
+  annabelle: '1234',
+  arianna: '1234',
+  alexandra: '1234',
+};
+
 const Login = () => {
   const navigate = useNavigate();
 
-  const  [state, setState]  = useState({
+  const [state, setState] = useState({
     loginFailed: false,
   });
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-
-    const users = {
-      kevin: '1234',
-      annabelle: '1234',
-      arianna: '1234',
-      alexandra: '1234',
-    };
 
     const username = e.target.username.value.toLowerCase();
     const password = e.target.password.value;
@@ -37,7 +38,7 @@ const Login = () => {
   return (
     <div className="auth-container">
       <form onSubmit={onFormSubmit}>
-        <label>Login.jsx</label> <br />
+        <label>Login Page</label> <br />
         <input type="text" id="username" placeholder="username"></input> <br />
         <input type="text" id="password" placeholder="password"></input> <br />
         <input type="submit"></input>
@@ -50,8 +51,9 @@ const Login = () => {
           );
         }
       })()}
-      <Link to='/signup'><button>Signup</button></Link>
-      
+      <Link to="/signup">
+        <button>Signup</button>
+      </Link>
     </div>
   );
 };

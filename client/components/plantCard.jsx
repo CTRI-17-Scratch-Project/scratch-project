@@ -1,12 +1,13 @@
 import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
-const PlantCard = () => {
+const PlantCard = (props) => {
   return (
-    <div>
-      <h2> testing </h2>
+    <div className="plant-card">
+      <img src={props.img} width={100} height={100}></img>
+      <p>{props.name}</p>
     </div>
-  )
+  );
 };
 
 export default PlantCard;

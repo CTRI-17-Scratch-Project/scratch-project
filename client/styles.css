@@ -1,3 +1,19 @@
 body {
   background-color: skyblue;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+ul { 
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+ justify-content: space-between
+}
+
+.plant-card {
+  height: 250px;
+  width: 150px;
+  border: solid black;
 }
