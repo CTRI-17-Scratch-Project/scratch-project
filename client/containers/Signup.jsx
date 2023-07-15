@@ -18,15 +18,15 @@ const Signup = () => {
   const onFormSubmit = (e) => {
     e.preventDefault();
 
-    const username = e.target.username.value.toLowerCase();
-    const password = e.target.password.value;
+    const username = document.querySelector('#username').value.toLowerCase();
+    const password = document.querySelector('#password').value;
     const body = {
       username: username,
       password: password,
     };
 
     // Testing data... please remove after post request is connected
-    if (body.username in users) {
+    if (body.username in users || body.username === '') {
       console.log(1);
       setState({
         signUpStatusCode: 2,
@@ -61,16 +61,15 @@ const Signup = () => {
 
   return (
     <div className="auth-container">
-      <form onSubmit={onFormSubmit}>
-        <label>Signup Page</label> <br />
-        <input type="text" id="username" placeholder="username"></input> <br />
-        <input type="text" id="password" placeholder="password"></input> <br />
-        <input type="submit"></input>
-      </form>
-      <br />
+      <label>Create Account</label>
+      <input type="text" placeholder="username" id="username"></input>
+      <input type="password" placeholder="password" id="password"></input>
+      <button className="auth-button" onClick={onFormSubmit}>
+        CREATE ACCOUNT
+      </button>
 
       <Link to="/login">
-        <button>Log in</button>
+        <button className="auth-button">SIGN IN</button>
       </Link>
       {(() => {
         if (state.signUpStatusCode === 1) {
@@ -78,8 +77,8 @@ const Signup = () => {
             <p>Account created successfully. Please return to log in page.</p>
           );
         } else if (state.signUpStatusCode === 2) {
-          return <p>Account already exists. Please </p>;
-        }
+          return <p>Invalid username</p>;
+        } 
       })()}
     </div>
   );

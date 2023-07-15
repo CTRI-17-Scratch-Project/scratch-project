@@ -3,18 +3,20 @@ import { useNavigate, Link } from 'react-router-dom';
 
 const NavBar = () => {
   return (
-    <nav className='nav'>
-      <ul>
-        <li>
-          <Link to="/">My Garden</Link>
-        </li>
-        <li>
-          <Link to="/discover">Discover</Link>
-        </li>
-        <li>
-          <Link to="/account">Account</Link>
-        </li>
-      </ul>
+    <nav className="nav">
+      <div id="left">
+        <Link to="/" className="nav-first">
+          My Garden
+        </Link>
+
+        <Link to="/discover">Discover</Link>
+      </div>
+      <div>
+        <a id="logo">Plant Daddy</a>
+      </div>
+      <div id="right">
+        <Link to="/account">Account</Link>
+      </div>
     </nav>
   );
 };

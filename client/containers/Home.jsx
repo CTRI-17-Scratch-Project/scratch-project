@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useNavigate } from 'react-router-dom';
-import '../styles.css';
+import '../styles.scss';
 import PlantCard from '../components/PlantCard.jsx';
 
 const Home = () => {
@@ -36,7 +36,7 @@ const Home = () => {
         m: 1.22,
         cm: 122,
       },
-      name: 'Janet Craig',
+      name: 'Kyle',
       Pruning: 'If needed',
       Family: 'Liliaceae',
       'Height potential': {
@@ -146,6 +146,7 @@ const Home = () => {
   for (let i = 0; i < state.plants.length; i++) {
     plantCards.push(
       <PlantCard
+        key={state.plants[i].name + i}
         img={state.plants[i].img}
         name={state.plants[i].name}
       ></PlantCard>

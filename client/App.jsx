@@ -4,7 +4,7 @@ import { Outlet } from 'react-router';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import NavBar from './components/NavBar.jsx';
-import './styles.css';
+import './styles.scss';
 
 const App = () => {
   return (
