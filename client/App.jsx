@@ -14,9 +14,12 @@ const App = () => {
     // for each Plant item received, create a new plant card and render to screen
   }, []);
 
-
-
-  return (<p>App.jsx</p>);
+  return (
+    <div>
+      App.jsx
+      <p>hello {localStorage.getItem('username')}</p>
+    </div>
+  );
 };
 
 export default App;
