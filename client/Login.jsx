@@ -21,10 +21,7 @@ const Login = () => {
     const username = e.target.username.value.toLowerCase();
     const password = e.target.password.value;
 
-    console.log(username[username])
-
-
-    // If user is found and authenticated, redirect to '/'. Else redirect to '/signup'
+    // If user is found and authenticated, redirect to '/'. Else display invalid login message'
     if (users[username] !== undefined && users[username] === password) {
       console.log('Login Authenticated');
       localStorage.setItem('username', e.target.username.value);
@@ -35,18 +32,14 @@ const Login = () => {
         loginFailed: true,
       });
     }
-
-    // If username and password is in database, redirect to login
   };
-
-
 
   return (
     <div className="auth-container">
       <form onSubmit={onFormSubmit}>
         <label>Login.jsx</label> <br />
-        <input type="text" id="username" defaultValue="username"></input> <br />
-        <input type="text" id="password" defaultValue="password"></input> <br />
+        <input type="text" id="username" placeholder="username"></input> <br />
+        <input type="text" id="password" placeholder="password"></input> <br />
         <input type="submit"></input>
       </form>
       <br />

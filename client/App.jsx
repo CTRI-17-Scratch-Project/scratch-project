@@ -14,10 +14,16 @@ const App = () => {
     // for each Plant item received, create a new plant card and render to screen
   }, []);
 
+  const handleLogOut = () => {
+    localStorage.removeItem('username');
+    navigate('/login');
+  };
+
   return (
     <div>
       App.jsx
       <p>hello {localStorage.getItem('username')}</p>
+      <button onClick={handleLogOut}>Log Out</button>
     </div>
   );
 };
