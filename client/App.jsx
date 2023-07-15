@@ -4,11 +4,7 @@ import './styles.css';
 
 const App = () => {
   return (
-    <Routes>
-      <Route path="/">
-        <></>
-      </Route>
-    </Routes>
+    <p>App</p>
   );
 };
 

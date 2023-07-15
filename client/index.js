@@ -6,7 +6,6 @@
 // const root = ReactDOM.createRoot(document.getElementById('root)'));
 // root.render(<App />);
 
-
 // // import React from 'react';
 // // import { createRoot } from 'react-dom/client';
 // // import App from './App.jsx';
@@ -19,12 +18,19 @@
 
 import React from 'react';
 import { render } from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import App from './App.jsx';
 
 render(
   <BrowserRouter>
-    <App />
+    <Routes>
+      <Route path="/">
+        <App />
+      </Route>
+      <Route path="/discover">
+        
+      </Route>
+    </Routes>
   </BrowserRouter>,
   document.getElementById('root')
 );
