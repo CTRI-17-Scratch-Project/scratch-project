@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { plantCard } from './plantCard.jsx';
+// import { plantCard } from './plantCard.jsx';
 
 const Discover = (props) => {
   //declare plant feed state
@@ -19,16 +19,17 @@ const Discover = (props) => {
 
   //declare an array to hold feeds
   const feed = [];
-  for (let i = 0; i < 20; i++) {
-    feed.push(
-      <plantCard
-        id={'plantFeed_' + i}
-        key={'plant_' + i}
-        plantFeed={plantFeed[i]}
-      />
-    );
-  }
-  //iterate through API feed
+    //iterate through API feed
+  // for (let i = 0; i < 20; i++) {
+  //   feed.push(
+  //     <plantCard
+  //       id={'plantFeed_' + i}
+  //       key={'plant_' + i}
+  //       plantFeed={plantFeed[i]}
+  //     />
+  //   );
+  // }
+
 
   return (
     <div className="plantsContainer">

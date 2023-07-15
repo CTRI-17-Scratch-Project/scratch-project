@@ -25,7 +25,7 @@ const Login = () => {
     if (users[username] !== undefined && users[username] === password) {
       console.log('Login Authenticated');
       localStorage.setItem('username', e.target.username.value);
-      navigate('/');
+      navigate('/home');
     } else {
       console.log('Login failed');
       setState({

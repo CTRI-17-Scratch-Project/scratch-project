@@ -1,29 +1,21 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Outlet } from 'react-router';
+
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+
+import NavBar from './components/NavBar.jsx';
+import Home from './containers/Home.jsx';
+import Discover from './containers/Discover.jsx';
 import './styles.css';
 
+
+
 const App = () => {
-  const navigate = useNavigate();
-
-  React.useEffect(() => {
-    if (localStorage.getItem('username') === null) {
-      return navigate('/login');
-    }
-
-    // make a GET request to server using localstorage.getItem('username')
-    // for each Plant item received, create a new plant card and render to screen
-  }, []);
-
-  const handleLogOut = () => {
-    localStorage.removeItem('username');
-    navigate('/login');
-  };
-
   return (
     <div>
-      App.jsx
-      <p>hello {localStorage.getItem('username')}</p>
-      <button onClick={handleLogOut}>Log Out</button>
+      <NavBar />
+      <Outlet />
     </div>
   );
 };
