@@ -6,8 +6,8 @@ import App from './App.jsx';
 import Login from './containers/Login.jsx';
 import Signup from './containers/Signup.jsx';
 import Home from './containers/Home.jsx';
-import Account from './containers/Account.jsx'
-import Discover from './containers/Discover.jsx'
+import Account from './containers/Account.jsx';
+import Discover from './containers/Discover.jsx';
 
 const root = createRoot(document.getElementById('root'));
 
@@ -15,16 +15,18 @@ const root = createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <Routes>
+
       <Route element={<WithoutNav />}>
         <Route path="/login" element={<Login />} />
         <Route path="/sigup" element={<Signup />} />
       </Route>
 
       <Route element={<App />}>
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/account" element={<Account />} />
         <Route path="/discover" element={<Discover />} />
       </Route>
+
     </Routes>
   </BrowserRouter>
 );

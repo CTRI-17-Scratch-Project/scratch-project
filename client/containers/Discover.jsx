@@ -19,7 +19,7 @@ const Discover = (props) => {
 
   //declare an array to hold feeds
   const feed = [];
-    //iterate through API feed
+  //iterate through API feed
   // for (let i = 0; i < 20; i++) {
   //   feed.push(
   //     <plantCard
@@ -30,10 +30,10 @@ const Discover = (props) => {
   //   );
   // }
 
-
   return (
     <div className="plantsContainer">
       <h3>testing</h3>
+      Discover Page
     </div>
   );
 };

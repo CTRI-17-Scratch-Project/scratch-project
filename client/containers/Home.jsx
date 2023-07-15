@@ -14,11 +14,14 @@ const Home = () => {
     // for each Plant item received, create a new plant card and render to screen
   }, []);
 
-  
   return (
     <div>
-      Home.jsx
+      <h1>Welcome to Plant Daddy!</h1>
       <p>hello {localStorage.getItem('username')}</p>
+      Home Page
+      <p>
+        Let plant daddy take care of your plants <i className="bi bi-flower2"></i>
+      </p>
     </div>
   );
 };
