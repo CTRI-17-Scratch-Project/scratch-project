@@ -27,7 +27,7 @@ module.exports = {
     ],
   },
   devServer: {
-    host: 'localhost',
+    host: '127.0.0.1',
     port: 8080,
     hot: true,
     historyApiFallback: true,
@@ -48,7 +48,7 @@ module.exports = {
       title: 'Development',
       template: 'index.html',
     }),
-    //new Dotenv(),
+
   ],
   resolve: {
     extensions: ['.js', '.jsx'],

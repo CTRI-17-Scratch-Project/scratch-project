@@ -6,24 +6,24 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 //TODO: Require all routers
-const exampleRouter = require('./routers/exampleRouter');
+// const exampleRouter = require('./routers/exampleRouter');
 
 //handle requests for static files
-// app.use(express.static(path.resolve(__dirname, '../client/index.js')));
-if ((process.env.NODE_ENV = 'production')) {
-  app.use('/build', express.static(path.resolve(__dirname, '../build')));
-}
+app.use(express.static(path.resolve(__dirname, '../client')));
+// if ((process.env.NODE_ENV = 'production')) {
+//   app.use('/build', express.static(path.resolve(__dirname, '../build')));
+// }
 
 //convert incoming requests to JSON
 app.use(express.json());
 app.use('*', express.urlencoded({ extended: true }));
 
 //TODO: Write route handler functions
-app.use('/', exampleMiddleware, (req, res) => {});
+// app.use('/', exampleMiddleware, (req, res) => {});
 
 //handle generic request to serve HTML file
 app.get('/', (req, res) => {
-  return res.status(200).sendFile(path.resolve(__dirname, '../index.html'));
+  return res.status(200).sendFile(path.resolve(__dirname, '../client/index.html'));
 });
 
 //catch-all route for unknown routes
