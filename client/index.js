@@ -15,10 +15,9 @@ const root = createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <Routes>
-
       <Route element={<WithoutNav />}>
         <Route path="/login" element={<Login />} />
-        <Route path="/sigup" element={<Signup />} />
+        <Route path="/signup" element={<Signup />} />
       </Route>
 
       <Route element={<App />}>
@@ -26,7 +25,6 @@ root.render(
         <Route path="/account" element={<Account />} />
         <Route path="/discover" element={<Discover />} />
       </Route>
-
     </Routes>
   </BrowserRouter>
 );
