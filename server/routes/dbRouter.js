@@ -1,7 +1,7 @@
 const express = require('express');
 
 //TODO: require relevant controller(s)
-const plantController = require('../controllers/plantController');
+const userController = require('../controllers/userController');
 
 const dbRouter = express.Router();
 
@@ -10,10 +10,10 @@ dbRouter.get('/', (req, res) => {
 	return res.status(200).json({});
 });
 
-dbRouter.post('/', plantController.createUser, (req, res) => {
+dbRouter.post('/', userController.createUser, (req, res) => {
 	console.log('I am in the router to the database (POST)');
-	console.log(res.locals.newPlant);
-	return res.status(200).json(res.locals.newPlant);
+	console.log(res.locals.newUser);
+	return res.status(200).json(res.locals.newUser);
 });
 
 dbRouter.delete('/', (req, res) => {
@@ -21,9 +21,10 @@ dbRouter.delete('/', (req, res) => {
 	return res.status(200).json({});
 });
 
-dbRouter.patch('/', (req, res) => {
+dbRouter.patch('/', userController.addUserPlants, (req, res) => {
 	console.log('I am in the router to the database (PATCH)');
-	return res.status(200).json({});
+	console.log(res.locals.addedPlant);
+	return res.status(200).json(res.locals.updatedPlants);
 });
 
 module.exports = dbRouter;

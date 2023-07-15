@@ -201,3 +201,8 @@ Use -->
     "_id": "64b2da3c320424f3de9d5ad4",
     "__v": 0
 } -->
+
+Challenges that we've faced so far:
+
+- Not working together in the same file
+-
