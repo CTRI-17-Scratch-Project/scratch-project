@@ -135,14 +135,15 @@ const Home = () => {
       return navigate('/login');
     }
 
-    // fetch('/userdata')
-    // .then((res) => res.json())
-    // .then((data) => {
-    //   console.log(data);
-    //   setState({
-    //     data: data,
-    //   });
-    // });
+    fetch('/api/dbAPI/' + localStorage.username)
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      setState({
+        ...state,
+        plants: data.plants,
+      });
+    });
   }, []);
 
   const handlePopupClose = () => {
@@ -166,8 +167,8 @@ const Home = () => {
       <PlantCard
         key={state.plants[i].name + i}
         img={state.plants[i].img}
-        name={state.plants[i].name}
-        data={state.plants[i].Watering}
+        name={state.plants[i].common_name}
+        data={state.plants[i].watering}
         handlePlantCardClick={handlePlantCardClick}
       ></PlantCard>
     );
