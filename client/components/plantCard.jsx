@@ -19,6 +19,7 @@ const PlantCard = (props) => {
   //   Blooming_season,
   //   Pruning,
   // } = props.feed;
+ // console.log(props.feed);
   return (
     <div
       className="plant-card"
@@ -27,10 +28,7 @@ const PlantCard = (props) => {
       }}
     >
       <img src={props.img} width={100} height={100}></img>
-      <ul>
-        <li>Name: {props.Common_name}</li>
-        <li>Family: </li>
-      </ul>
+      <p>{props.name}</p>
     </div>
   );
 };
