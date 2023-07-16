@@ -36,9 +36,9 @@ module.exports = {
       publicPath: '/build',
     },
     proxy: {
-      '/api/*': {
+      '/api/**': {
         target: 'http://localhost:3000/',
-        pathRewrite: { '^/api': '' },
+        secure: false,
       },
     },
   },
@@ -48,7 +48,6 @@ module.exports = {
       title: 'Development',
       template: './client/index.html',
     }),
-
   ],
   resolve: {
     extensions: ['.js', '.jsx'],
