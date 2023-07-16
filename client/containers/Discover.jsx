@@ -10,7 +10,7 @@ const Discover = (props) => {
   //use effect to fetch API
   useEffect(() => {
     const fetchFeed = async () => {
-      const response = await fetch('/plantAPI');
+      const response = await fetch('/api/plantAPI', { method: 'GET' });
       const json = await response.json();
       console.log(json);
     };
