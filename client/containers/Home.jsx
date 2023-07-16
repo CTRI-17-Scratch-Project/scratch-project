@@ -3,6 +3,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles.scss';
 import PlantCard from '../components/PlantCard.jsx';
+import Popup from '../components/Popup';
 
 const Home = () => {
   // PLACE HOLDER DATA FOR TESTING BEFORE CONNECTING TO SERVER
@@ -123,6 +124,8 @@ const Home = () => {
 
   const [state, setState] = React.useState({
     plants: plants,
+    popupContent: '',
+    popupTrigger: false,
   });
 
   const navigate = useNavigate();
@@ -142,6 +145,21 @@ const Home = () => {
     // });
   }, []);
 
+  const handlePopupClose = () => {
+    setState({
+      ...state,
+      popupTrigger: false,
+    });
+  };
+
+  const handlePlantCardClick = (data) => {
+    setState({
+      ...state,
+      popupTrigger: true,
+      popupContent: data,
+    });
+  };
+
   const plantCards = [];
   for (let i = 0; i < state.plants.length; i++) {
     plantCards.push(
@@ -149,6 +167,8 @@ const Home = () => {
         key={state.plants[i].name + i}
         img={state.plants[i].img}
         name={state.plants[i].name}
+        data={state.plants[i].Watering}
+        handlePlantCardClick={handlePlantCardClick}
       ></PlantCard>
     );
   }
@@ -163,6 +183,12 @@ const Home = () => {
         <i className="bi bi-flower2"></i>
       </p>
       {plantCards}
+      <Popup
+        content={state.popupContent}
+        trigger={state.popupTrigger}
+        handlePopupClose={handlePopupClose}
+        page={'home_page'}
+      ></Popup>
     </div>
   );
 };

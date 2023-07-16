@@ -12,7 +12,7 @@ const Account = () => {
   return (
     <div>
       <p> {localStorage.getItem('username')}&apos;s Account</p>
-      <button onClick={handleLogOut}>Log Out</button>
+      <button onClick={handleLogOut} className='red-button'>Log Out</button>
     </div>
   );
 };
