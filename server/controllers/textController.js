@@ -31,8 +31,11 @@ textController.sendText = async (req, res, next) => {
 	try {
 		const message = await client.messages.create({
 			from: '+18449693100',
+			messagingServiceSid: 'MG2583b9f6099fae31d8441512947c4e1d',
 			body: `Hi, ${username}, Plant Daddy here! It is time to show your ${plant} some love!  Give your ${plant} about 1/4-1/3 of the pot's volume of water and rotate the pot for even sun exposure.  Finish off the job by whispering some sweet nothings into its leaves, and your ${plant} will keep thriving!`,
 			to: '+12035544464',
+			scheduleType: 'fixed',
+			sendAt: new Date(Date.UTC(2023, 0o7, 16, 12, 0o2, 0o0)),
 			'content-type': 'application/json',
 		});
 		console.log(message);
