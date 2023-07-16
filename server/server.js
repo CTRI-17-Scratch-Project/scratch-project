@@ -21,9 +21,9 @@ app.use(express.json());
 app.use('*', express.urlencoded({ extended: true }));
 
 //TODO: Write route handler functions
-app.use('/dbAPI', dbRouter);
-app.use('/plantAPI', apiRouter);
-app.use('/textAPI', textRouter);
+app.use('api/dbAPI', dbRouter);
+app.use('api/plantAPI', apiRouter);
+app.use('api/textAPI', textRouter);
 
 //handle generic request to serve HTML file
 app.get('/', (req, res) => {
