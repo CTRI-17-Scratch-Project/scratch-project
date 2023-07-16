@@ -21,33 +21,33 @@ app.use('*', express.urlencoded({ extended: true }));
 
 //TODO: Write route handler functions
 app.use('/dbAPI', dbRouter);
-app.use('/plantAPI', apiRouter);
+app.use('/api/plantAPI', apiRouter);
 
 //handle generic request to serve HTML file
 app.get('/', (req, res) => {
-	return res
-		.status(200)
-		.sendFile(path.resolve(__dirname, '../client/index.html'));
+  return res
+    .status(200)
+    .sendFile(path.resolve(__dirname, '../client/index.html'));
 });
 
 //catch-all route for unknown routes
 app.use((req, res) => {
-	res.status(404).send('Oops! Cannot find page!');
+  res.status(404).send('Oops! Cannot find page!');
 });
 
 //global error handler function
 app.use((err, req, res, next) => {
-	const defaultError = {
-		log: 'Express error handler caught unknown middleware error',
-		status: 400,
-		message: { err: 'An error occurred' },
-	};
-	const errorObj = Object.assign({}, defaultError, err);
-	console.log(errorObj.log);
-	return res.status(errorObj.status).json(errorObj.message);
+  const defaultError = {
+    log: 'Express error handler caught unknown middleware error',
+    status: 400,
+    message: { err: 'An error occurred' },
+  };
+  const errorObj = Object.assign({}, defaultError, err);
+  console.log(errorObj.log);
+  return res.status(errorObj.status).json(errorObj.message);
 });
 
 //listen on port 3000
 app.listen(PORT, () => {
-	console.log(`Server listening on port: ${PORT}`);
+  console.log(`Server listening on port: ${PORT}`);
 });
