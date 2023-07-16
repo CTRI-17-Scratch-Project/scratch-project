@@ -12,11 +12,13 @@ const Discover = (props) => {
     const fetchFeed = async () => {
       const response = await fetch('/api/plantAPI', { method: 'GET' });
       const json = await response.json();
-      console.log(json);
+      await updatePlantFeed(json);
+      //console.log(json);
     };
     fetchFeed();
   }, []);
-  console.log(plantFeed);
+
+  console.log(plantFeed[0]);
   // const {
   //   Img,
   //   Id,
@@ -32,21 +34,16 @@ const Discover = (props) => {
   //   Color_of_blooms,
   //   Blooming_season,
   //   Pruning,
-  // } = plantFeed;
+  // } = plantFeed[];
 
   //declare an array to hold feeds
   const feed = [];
   //iterate through API feed
-  // for (let i = 0; i < plantFeed.length; i++) {
-  //   feed.push(
-  //     <PlantCard
-  //       id={Id}
-  //       key={'plant_' + i}
-  //       img={plantFeed[i].img}
-  //       name={plantFeed[i].name}
-  //     />
-  //   );
-  // }
+  for (let i = 0; i < 20; i++) {
+    feed.push(
+      <PlantCard id={plantFeed[i]} key={'plant_' + i} feed={plantFeed[i]} />
+    );
+  }
   // const pop = []
   // for (let i = 0; i < plantFeed.length; i++) {
   //   feed.push(

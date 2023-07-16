@@ -3,64 +3,64 @@ const axios = require('axios');
 const apiController = {};
 
 apiController.getPlantData = async (req, res, next) => {
-	console.log('We are in the getPlantData controller');
-	try {
-		const response = await axios.request(
-			'https://house-plants2.p.rapidapi.com/all',
-			{
-				method: 'GET',
-				headers: {
-					'X-RapidAPI-Key':
-						'b8a7f4d740msh6f868ffc4f45dfdp1e6998jsn60afddc504b4',
-					'X-RapidAPI-Host': 'house-plants2.p.rapidapi.com',
-				},
-			}
-		);
-		const data = response.data;
-		console.log(data);
-		res.locals.plantData = data;
-		next();
-	} catch (error) {
-		console.error(error);
-		res.status(500).json({ error: 'An error occurred in apiRouter' });
-	}
+  console.log('We are in the getPlantData controller');
+  try {
+    const response = await axios.request(
+      'https://house-plants2.p.rapidapi.com/all',
+      {
+        method: 'GET',
+        headers: {
+          'X-RapidAPI-Key':
+            'b8a7f4d740msh6f868ffc4f45dfdp1e6998jsn60afddc504b4',
+          'X-RapidAPI-Host': 'house-plants2.p.rapidapi.com',
+        },
+      }
+    );
+    const data = response.data;
+    //console.log(data);
+    res.locals.plantData = data;
+    next();
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred in apiRouter' });
+  }
 };
 
 apiController.handlePlantData = (req, res, next) => {
-	console.log('we are in the handlePlantData middleware');
-	const makeDataPretty = async () => {
-		try {
-			const prettierData = [];
-			for (const plant of res.locals.plantData) {
-				const obj = {
-					Img: plant['Img'],
-					Id: plant['id'],
-					Family: plant['Family'],
-					Common_name: plant['Common name'],
-					Categories: plant['Categories'],
-					Origin: plant['Origin'],
-					Climate: plant['Climate'],
-					Zone: plant['Zone'],
-					Light_ideal: plant['Light ideal'],
-					Light_tolerated: plant['Light tolered'],
-					Watering: plant['Watering'],
-					Color_of_blooms: plant['Color of blooms'],
-					Blooming_season: plant['Blooming season'],
-					Pruning: plant['Pruning'],
-				};
-				prettierData.push(obj);
-			}
-			res.locals.plantData = prettierData;
-			return next();
-		} catch (error) {
-			next({
-				log: 'Error in apiController middleware function data handling',
-				status: 400,
-				message: { err: 'trouble handling data' },
-			});
-		}
-	};
-	makeDataPretty();
+  console.log('we are in the handlePlantData middleware');
+  const makeDataPretty = async () => {
+    try {
+      const prettierData = [];
+      for (const plant of res.locals.plantData) {
+        const obj = {
+          Img: plant['Img'],
+          Id: plant['id'],
+          Family: plant['Family'],
+          Common_name: plant['Common name'],
+          Categories: plant['Categories'],
+          Origin: plant['Origin'],
+          Climate: plant['Climate'],
+          Zone: plant['Zone'],
+          Light_ideal: plant['Light ideal'],
+          Light_tolerated: plant['Light tolered'],
+          Watering: plant['Watering'],
+          Color_of_blooms: plant['Color of blooms'],
+          Blooming_season: plant['Blooming season'],
+          Pruning: plant['Pruning'],
+        };
+        prettierData.push(obj);
+      }
+      res.locals.plantData = prettierData;
+      return next();
+    } catch (error) {
+      next({
+        log: 'Error in apiController middleware function data handling',
+        status: 400,
+        message: { err: 'trouble handling data' },
+      });
+    }
+  };
+  makeDataPretty();
 };
 
 // NYTController.handleBookList = (req, res, next) => {
