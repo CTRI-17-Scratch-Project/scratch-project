@@ -33,20 +33,20 @@ apiController.handlePlantData = (req, res, next) => {
 			const prettierData = [];
 			for (const plant of res.locals.plantData) {
 				const obj = {
-					Img: plant['Img'],
-					Id: plant['id'],
-					Family: plant['Family'],
-					Common_name: plant['Common name'],
-					Categories: plant['Categories'],
-					Origin: plant['Origin'],
-					Climate: plant['Climate'],
-					Zone: plant['Zone'],
-					Light_ideal: plant['Light ideal'],
-					Light_tolerated: plant['Light tolered'],
-					Watering: plant['Watering'],
-					Color_of_blooms: plant['Color of blooms'],
-					Blooming_season: plant['Blooming season'],
-					Pruning: plant['Pruning'],
+					img: plant['Img'],
+					id: plant['id'],
+					family: plant['Family'],
+					common_name: plant['Common name'],
+					categories: plant['Categories'],
+					origin: plant['Origin'],
+					climate: plant['Climate'],
+					zone: plant['Zone'],
+					light_ideal: plant['Light ideal'],
+					light_tolerated: plant['Light tolered'],
+					watering: plant['Watering'],
+					color_of_blooms: plant['Color of blooms'],
+					blooming_season: plant['Blooming season'],
+					pruning: plant['Pruning'],
 				};
 				prettierData.push(obj);
 			}
