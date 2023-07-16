@@ -36,24 +36,28 @@ const Login = () => {
   };
 
   return (
-    <div className="auth-container">
-      <label>Sign In</label>
-      <input type="text" placeholder="username" id="username"></input>
-      <input type="password" placeholder="password" id="password"></input>
-      <button className="auth-button" onClick={onFormSubmit}>
-        SIGN IN
-      </button>
+    <div className='auth-container-main'>
+      <div className="auth-container">
+        <label>Sign In</label>
+        <input type="text" placeholder="username" id="username"></input>
+        <input type="password" placeholder="password" id="password"></input>
+        <button className="auth-button" onClick={onFormSubmit}>
+          SIGN IN
+        </button>
 
-      <Link to="/signup">
-        <button className="auth-button">CREATE ACCOUNT</button>
-      </Link>
-      {(() => {
-        if (state.loginFailed === true) {
-          return (
-            <p id='message-text'>Username or password incorrect. Please sign up or try again. </p>
-          );
-        }
-      })()}
+        <Link to="/signup">
+          <button className="auth-button">CREATE ACCOUNT</button>
+        </Link>
+        {(() => {
+          if (state.loginFailed === true) {
+            return (
+              <p id="message-text">
+                Username or password incorrect. Please sign up or try again.{' '}
+              </p>
+            );
+          }
+        })()}
+      </div>
     </div>
   );
 };

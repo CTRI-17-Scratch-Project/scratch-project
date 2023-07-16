@@ -1,40 +1,36 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
 
 //This is the POP UP
+
 const Popup = (props) => {
-  const { name, family } = props;
-  const [open, setOpen] = useState(false);
-  return (
-    <div className="popup-card">
-      <button onClick={() => setOpen(true)}>More info</button>
-      {open ? (
-        <MoreInfo
-          family={family}
-          name={name}
-          closePopup={() => setOpen(false)}
-        />
-      ) : null}
-    </div>
-  );
-};
+  return props.trigger ? (
+    <div className="popup-outer">
+      <div className="popup-inner">
+        <button id="popup-close-button" onClick={props.handlePopupClose}>
+          X
+        </button>
+        <div className='popup-content'>{props.content}</div>
 
-export const MoreInfo = (props) => {
-  const { popUp, closePopup, name, family } = props;
-  return (
-    <div className="popup-container">
-      <div className="popup-body">
-        <h1>{popUp}</h1>
-        <ul>
-          <li>name: {name}</li>
-          <li>family: {family}</li>
-        </ul>
-
-        <button onClick={closePopup}>Close X</button>
+        {(() => {
+          if (props.page === 'home_page') {
+            return (
+              <div className="popup-button-div">
+                <button className='red-button'>Remove Plant</button>
+                <button>Set Up Reminders</button>
+              </div>
+            );
+          } else if (props.page === 'discover_page') {
+            return (
+              <div className="popup-button-div">
+                <button>Add Plant</button>
+              </div>
+            );
+          }
+        })()}
       </div>
     </div>
+  ) : (
+    ''
   );
 };
-
 export default Popup;
-
