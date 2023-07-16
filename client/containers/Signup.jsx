@@ -41,10 +41,10 @@ const Signup = () => {
 
     const request_body = {
       username: username,
-      password: password,
+      plants : [],
     };
 
-    fetch('/dbAPI', {
+    fetch('/api/dbAPI', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
