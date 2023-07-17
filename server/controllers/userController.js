@@ -3,85 +3,85 @@ const User = require('../models/userModel');
 const userController = {};
 
 userController.createUser = async (req, res, next) => {
-  console.log('we are in the createUser middleware function');
-  try {
-    const { username } = req.body;
-    if (!username)
-      return next({
-        log: 'Error in userController.createUser function before posting to DB',
-        status: 400,
-        message: { err: 'error in createUser' },
-      });
-    const newUser = await User.create({
-      username: username,
-      plants: [],
-      notifications: []
-    });
-    
-    console.log(newUser);
-    res.locals.newUser = newUser;
-    next();
-  } catch (err) {
-    return next({
-      log: 'Error in userController.createUser function in posting to DB',
-      status: 400,
-      message: { err: 'error in createUser' },
-    });
-  }
+	console.log('we are in the createUser middleware function');
+	try {
+		const { username } = req.body;
+		if (!username)
+			return next({
+				log: 'Error in userController.createUser function before posting to DB',
+				status: 400,
+				message: { err: 'error in createUser' },
+			});
+		const newUser = await User.create({
+			username: username,
+			plants: [],
+			notifications: [],
+		});
+
+		console.log(newUser);
+		res.locals.newUser = newUser;
+		next();
+	} catch (err) {
+		return next({
+			log: 'Error in userController.createUser function in posting to DB',
+			status: 400,
+			message: { err: 'error in createUser' },
+		});
+	}
 };
 
 userController.getUserPlants = async (req, res, next) => {
-  console.log('we are in the getUserPlants middleware function');
-  try {
-    const userInfo = await User.findOne({ username: req.params.name });
+	console.log('we are in the getUserPlants middleware function');
+	try {
+		const userInfo = await User.findOne({ username: req.params.name });
 
-    if (!userInfo) {
-      return next({
-        log: 'Error in userController.getUserPlants function before posting to DB',
-        status: 400,
-        message: { err: 'user not found' },
-      });
-    }
-    res.locals.userInfo = userInfo;
-    return next();
-  } catch (err) {
-    return next({
-      log: 'Error in userController.getUserPlants function before posting to DB',
-      status: 400,
-      message: { err: 'error in getUserPlants' },
-    });
-  }
+		if (!userInfo) {
+			return next({
+				log: 'Error in userController.getUserPlants function before posting to DB',
+				status: 400,
+				message: { err: 'user not found' },
+			});
+		}
+		res.locals.userInfo = userInfo;
+		return next();
+	} catch (err) {
+		return next({
+			log: 'Error in userController.getUserPlants function before posting to DB',
+			status: 400,
+			message: { err: 'error in getUserPlants' },
+		});
+	}
 };
 
 userController.addUserPlants = async (req, res, next) => {
-  console.log('I am in the addUserPlants middleware');
-  console.log(req.body);
-  try {
-    //the keys we expect on request body
-    const { username, plants, type } = req.body;
-    //checking to make sure every property on req body has a value
+	console.log('I am in the addUserPlants middleware');
+	console.log(req.body);
+	try {
+		//the keys we expect on request body
+		const { username, plants, type } = req.body;
+		//checking to make sure every property on req body has a value
 
-    if (!username || !plants || !type)
-      return next({
-        log: 'Error in userController.addUserPlants middleware function before posting to DB',
-        status: 400,
-        message: { err: 'Incorrect inputs' },
-      });
-    //adding a plant to the user's document
-    if (type === 'add') {
-      //take care of plants array here
-      const userInfo = await User.findOneAndUpdate(
-        { username: req.body.username },
-        { $push: { plants: req.body.plants } },
-        { new: true }
-      );
-      const currentPlants = userInfo.plants.flat();
-      console.log('data returned from create: ', currentPlants);
-      res.locals.updatedPlants = currentPlants;
-      return next();
-    }
+		if (!username || !plants || !type)
+			return next({
+				log: 'Error in userController.addUserPlants middleware function before posting to DB',
+				status: 400,
+				message: { err: 'Incorrect inputs' },
+			});
+		//adding a plant to the user's document
+		if (type === 'add') {
+			//take care of plants array here
+			const userInfo = await User.findOneAndUpdate(
+				{ username: req.body.username },
+				{ $push: { plants: req.body.plants } },
+				{ new: true }
+			);
+			const currentPlants = userInfo.plants.flat();
+			console.log('data returned from create: ', currentPlants);
+			res.locals.updatedPlants = currentPlants;
+			return next();
+		}
 
-    /*
+		/*
     
     {
    "username": "kevin",
@@ -104,112 +104,113 @@ userController.addUserPlants = async (req, res, next) => {
     }
   
     */
-    if (type === 'delete') {
-      const userInfo = await User.findOneAndUpdate(
-        { username: req.body.username },
-        {
-          $pull: {
-            plants: {
-              Img: req.body.plants.Img,
-              Id: req.body.plants.Id,
-              Family: req.body.plants.Family,
-              Common_name: req.body.plants.Common_name,
-              Categories: req.body.plants.Categories,
-              Origin: req.body.plants.Origin,
-              Zone: req.body.plants.Zone,
-              Light_ideal: req.body.plants.Light_ideal,
-              Light_tolerated: req.body.plants.Light_tolerated,
-              Watering: req.body.plants.Watering,
-              Color_of_blooms: req.body.plants.Color_of_blooms,
-              Blooming_season: req.body.plants.Blooming_season,
-              Pruning: req.body.plants.Pruning,
-            },
-          },
-          //{ $pull: { results: { $elemMatch: { score: 8 , item: "B" } } } }
-        },
-        { new: true }
-      );
-      const currentPlants = userInfo.plants.flat();
-      console.log('data returned from delete: ', currentPlants);
-      res.locals.updatedPlants = currentPlants;
-      return next();
-    }
-  } catch (err) {
-    return next({
-      log: 'Error in userController.addUserPlants function in posting to DB',
-      status: 400,
-      message: { err: 'error in addUserPlants' },
-    });
-  }
+		if (type === 'delete') {
+			const userInfo = await User.findOneAndUpdate(
+				{ username: req.body.username },
+				{
+					$pull: {
+						plants: {
+							Img: req.body.plants.Img,
+							Id: req.body.plants.Id,
+							Family: req.body.plants.Family,
+							Common_name: req.body.plants.Common_name,
+							Categories: req.body.plants.Categories,
+							Origin: req.body.plants.Origin,
+							Zone: req.body.plants.Zone,
+							Light_ideal: req.body.plants.Light_ideal,
+							Light_tolerated: req.body.plants.Light_tolerated,
+							Watering: req.body.plants.Watering,
+							Color_of_blooms: req.body.plants.Color_of_blooms,
+							Blooming_season: req.body.plants.Blooming_season,
+							Pruning: req.body.plants.Pruning,
+						},
+					},
+					//{ $pull: { results: { $elemMatch: { score: 8 , item: "B" } } } }
+				},
+				{ new: true }
+			);
+			const currentPlants = userInfo.plants.flat();
+			console.log('data returned from delete: ', currentPlants);
+			res.locals.updatedPlants = currentPlants;
+			return next();
+		}
+	} catch (err) {
+		return next({
+			log: 'Error in userController.addUserPlants function in posting to DB',
+			status: 400,
+			message: { err: 'error in addUserPlants' },
+		});
+	}
 };
 
 userController.updateNotifications = async (req, res, next) => {
-  console.log('I am in the userController update notifications middleware');
-  try {
-    const { username, plant, type } = req.body;
-    if (!type || !username || !plant)
-      return next({
-        log: 'Error in userController.updateNotifications function before posting to DB',
-        status: 400,
-        message: {
-          err: 'error in updateNotifications! Did not include correct type of request',
-        },
-      });
-    if (type === 'add') {
-      const userInfo = await User.findOneAndUpdate(
-        { username: req.body.username },
-        { $push: { notifications: res.locals.newMessage } },
-        { new: true }
-      );
-      // const currentNotifications = userInfo.notifications.flat();
-      // console.log(
-      //   'data returned from adding notification to user in DB: ',
-      //   currentNotifications
-      // );
-      return next();
-    }
-    if (type === 'delete') {
-      const userInfo = await User.findOneAndUpdate(
-        { username: req.body.username },
-        { $pull: { notifications: req.body.plant } },
-        //{ $pull: { results: { $elemMatch: { score: 8 , item: "B" } } } }
-        { new: true }
-      );
-      const currentNotifications = userInfo.notifications.flat();
-      console.log(
-        'data returned from deleting notification from user in DB: ',
-        currentNotifications
-      );
-      res.locals.updatedNotifications = currentNotifications;
-      return next();
-    }
-    if (type === 'update') {
-      const { daysInterval, hour } = req.body;
-      const newSchedule = `0 ${hour} */${daysInterval} * *`;
-      const userInfo = await User.findOneAndUpdate(
-        { username: req.body.username },
-        {
-          $set: {
-            'notifications[plant][sendAt]': `new Date(Date.UTC(${newSchedule}))`,
-          },
-        },
-        { new: true }
-      );
-      const currentNotifications = userInfo.notifications.flat();
-      console.log(
-        'data returned from adding notification to DB: ',
-        currentNotifications
-      );
-      res.locals.updatedNotifications = currentNotifications;
-      return next();
-    }
-  } catch (error) {
-    return next({
-      log: 'Error in userController.updateNotifications function in posting to DB',
-      status: 400,
-      message: { err: 'error in updateNotifications' },
-    });
-  }
+	console.log('I am in the userController update notifications middleware');
+	try {
+		const { username, plant, type } = req.body;
+		if (!type || !username || !plant)
+			return next({
+				log: 'Error in userController.updateNotifications function before posting to DB',
+				status: 400,
+				message: {
+					err: 'error in updateNotifications! Did not include correct type of request',
+				},
+			});
+		const newMessage = res.locals.newMessage;
+		if (type === 'add') {
+			const userInfo = await User.findOneAndUpdate(
+				{ username: req.body.username },
+				{ $push: { notifications: newMessage } },
+				{ new: true }
+			);
+			// const currentNotifications = userInfo.notifications.flat();
+			// console.log(
+			//   'data returned from adding notification to user in DB: ',
+			//   currentNotifications
+			// );
+			return next();
+		}
+		if (type === 'delete') {
+			const userInfo = await User.findOneAndUpdate(
+				{ username: req.body.username },
+				{ $pull: { notifications: req.body.plant } },
+				//{ $pull: { results: { $elemMatch: { score: 8 , item: "B" } } } }
+				{ new: true }
+			);
+			const currentNotifications = userInfo.notifications.flat();
+			console.log(
+				'data returned from deleting notification from user in DB: ',
+				currentNotifications
+			);
+			res.locals.updatedNotifications = currentNotifications;
+			return next();
+		}
+		if (type === 'update') {
+			const { daysInterval, hour } = req.body;
+			const newSchedule = `0 ${hour} */${daysInterval} * *`;
+			const userInfo = await User.findOneAndUpdate(
+				{ username: req.body.username },
+				{
+					$set: {
+						'notifications[plant][sendAt]': `new Date(Date.UTC(${newSchedule}))`,
+					},
+				},
+				{ new: true }
+			);
+			const currentNotifications = userInfo.notifications.flat();
+			console.log(
+				'data returned from adding notification to DB: ',
+				currentNotifications
+			);
+			res.locals.updatedNotifications = currentNotifications;
+			return next();
+		}
+	} catch (error) {
+		return next({
+			log: 'Error in userController.updateNotifications function in posting to DB',
+			status: 400,
+			message: { err: 'error in updateNotifications' },
+		});
+	}
 };
 
 module.exports = userController;

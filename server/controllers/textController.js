@@ -15,6 +15,8 @@ const client = require('twilio')('ACb85b03fe9fcbe43adc47d0c4e875c3aa', '4a225d87
 
 const textController = {};
 
+//below message is for scheduling at intervals
+
 // textController.sendText = async (req, res, next) => {
 // 	console.log('we are in the textController setupTexts');
 // 	const { username, plant, daysInterval, hour } = req.body;
@@ -54,6 +56,7 @@ const textController = {};
 // };
 
 textController.sendText = async (req, res, next) => {
+
   console.log('we are in the textController setupTexts');
   const { username, plant, phoneNumber } = req.body;
   console.log(req.body)
@@ -86,6 +89,7 @@ textController.sendText = async (req, res, next) => {
       message: { err: 'Error in sending message!', error },
     });
   }
+
 };
 
 module.exports = textController;
