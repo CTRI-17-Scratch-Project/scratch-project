@@ -24,3 +24,4 @@ dist/
 coverage/
 
 .vscode/
+.env
