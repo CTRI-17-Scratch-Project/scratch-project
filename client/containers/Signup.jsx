@@ -40,7 +40,7 @@ const Signup = () => {
 
     const request_body = {
       username: username,
-      plants : [],
+      plants: [],
     };
 
     fetch('/api/dbAPI', {
@@ -67,9 +67,15 @@ const Signup = () => {
   return (
     <div className="auth-container-main">
       <div className="auth-container">
-        <label>Create Account</label>
+        <img
+          id="signin-logo"
+          src="https://i.ibb.co/Wgb23JR/plantdaddy.png"
+          alt=""
+        />
+
         <input type="text" placeholder="username" id="username"></input>
         <input type="password" placeholder="password" id="password"></input>
+
         <button className="auth-button" onClick={onFormSubmit}>
           CREATE ACCOUNT
         </button>
@@ -86,6 +92,7 @@ const Signup = () => {
             return <p>Sign up failed. Please try again.</p>;
           }
         })()}
+
       </div>
     </div>
   );

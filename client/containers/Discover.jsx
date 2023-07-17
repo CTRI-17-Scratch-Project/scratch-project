@@ -10,6 +10,7 @@ const Discover = (props) => {
   const [state, setState] = React.useState({
     popupContent: {},
     popupTrigger: false,
+    added: false
   });
   //use effect to fetch API from backend
   useEffect(() => {
@@ -28,8 +29,10 @@ const Discover = (props) => {
   }, []);
   //handle popup page
   const handlePlantCardClick = (data) => {
+
     setState({
       ...state,
+      added: true,
       popupTrigger: true,
       popupContent: data,
     });
@@ -75,7 +78,10 @@ const Discover = (props) => {
   }
   //handle previous and next pages
   const [page, setPage] = useState(0);
+
   const feedPage = feed.slice(page, page + 12);
+
+  //handle page changes
   const handleNextPage = () => {
     console.log('next page!');
     setPage(page + 12);
@@ -85,38 +91,43 @@ const Discover = (props) => {
     console.log('previous page!');
   };
   //handle filter
-    const categoryList = ['Dracaena', 'Palm', 'Anthurium', 'Bromeliad', 'Aralia', 'Spathiphyllum']
-    const interestedInOptions = categoryList.map((option, idx) => {
-      return (
-        <option key={option+idx} value={option}>
-          {option}
-        </option>
-      );
+  const categoryList = [
+    'Category',
+    'Dracaena',
+    'Palm',
+    'Anthurium',
+    'Bromeliad',
+    'Aralia',
+    'Spathiphyllum',
+    'Hanging',
+  ];
+  const interestedInOptions = categoryList.map((option, idx) => {
+    return (
+      <option key={option + idx} value={option}>
+        {option}
+      </option>
+    );
+  });
+  const handleFilter = (e) => {
+    const idx = e.target.value;
+    const filtered = plantFeed.filter((plant) => {
+      return plant.Categories == idx;
     });
-  const [categoryFilter, setCategoryFilter] = useState([])
+    console.log(filtered);
+    updatePlantFeed(filtered);
+  };
 
-  
- 
-  const handleFilter =(filterOption)=> {
-const filtered = plantFeed.filter(plant =>{
-    return plant.Categories == filterOption
-     })
-     
-  }
-  
- // console.log(plantFeed[0].Common_name)
+  // console.log(plantFeed[0].Common_name)
 
   return (
     <div>
       <div className="page-header">
-        <h1>Welcome to Plant Daddy!</h1>
         <h3>
           Hello {localStorage.getItem('username')}! Discover new plants to add
           to your garden <i className="bi bi-flower2"></i>
         </h3>
       </div>
       <div>
-        <div className="feed">{feedPage}</div>
         <button
           className="btn"
           onClick={() => {
@@ -133,21 +144,23 @@ const filtered = plantFeed.filter(plant =>{
         >
           Next Page
         </button>
-        <label htmlFor="category-filter">Filter by Category:</label>
+        <label htmlFor="category-filter">Filter by:</label>
         <select
-            name="category-filter"
-            id="category-filter"
-            onClick={()=>{
-              handleFilter({interestedInOptions})
-            }}
-          >{interestedInOptions}
-          </select>
+        className='filter'
+          name="category-filter"
+          id="category-filter"
+          onChange={handleFilter}
+        >
+          {interestedInOptions}
+        </select>
+        <div className="feed">{feedPage}</div>
         <Popup
           content={state.popupContent}
           trigger={state.popupTrigger}
           handlePopupClose={handlePopupClose}
           handleAddPlant={handleAddPlant}
           page={'discover_page'}
+          added={state.added}
         ></Popup>
       </div>
     </div>

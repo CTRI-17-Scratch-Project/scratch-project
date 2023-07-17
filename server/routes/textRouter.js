@@ -5,14 +5,16 @@ const userController = require('../controllers/userController');
 const textRouter = express.Router();
 
 textRouter.post(
-	'/',
-	textController.sendText,
-	userController.updateNotifications,
-	(req, res) => {
-		console.log('I am in the textRouter post handler function');
-		console.log(res.locals.newMessage);
-		return res.status(200).json(res.locals.newMessage);
-	}
+
+  '/',
+  textController.sendText,
+  //userController.updateNotifications,
+  (req, res) => {
+    console.log('I am in the textRouter post handler function');
+    console.log(res.locals.newMessage);
+    return res.status(200).json(res.locals.newMessage);
+  }
+
 );
 
 textRouter.patch('/', userController.updateNotifications, (req, res) => {
