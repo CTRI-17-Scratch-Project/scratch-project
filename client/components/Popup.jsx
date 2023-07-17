@@ -53,13 +53,13 @@ const Popup = (props) => {
                 >
                   Remove Plant
                 </button>
-                <button>Set Up Reminders</button>
+                <button onClick={props.handleReminderPopupOpen}>Set Up Reminders</button>
               </div>
             );
           } else if (props.page === 'discover_page') {
             return (
               <div className="popup-button-div">
-                <button onClick={props.handleAddPlant}>Add Plant</button>
+                <button onClick={props.handleAddPlant}>Add to My Garden</button>
               </div>
             );
           }

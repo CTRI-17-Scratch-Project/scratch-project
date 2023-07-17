@@ -2,6 +2,7 @@
 .DS_Store
 eslintrc.json
 prettierrc.json
+.env
 
 # dependencies
 node_modules/

@@ -54,34 +54,35 @@ const textController = {};
 // };
 
 textController.sendText = async (req, res, next) => {
-	console.log('we are in the textController setupTexts');
-	const { username, plant } = req.body;
-	if (!username || !plant)
-		return next({
-			log: 'Error in textControllersetUpText',
-			status: 400,
-			message: { err: 'Error in request body!' },
-		});
-	try {
-		const message = await client.messages.create({
-			from: '+18449693100',
-			messagingServiceSid: 'MG2583b9f6099fae31d8441512947c4e1d',
-			body: `Hi, ${username}, Plant Daddy here! It is time to show your ${plant} some love!  Give your ${plant} about 1/4-1/3 of the pot's volume of water and rotate the pot for even sun exposure.  Finish off the job by whispering some sweet nothings into its leaves, and your ${plant} will keep thriving!`,
-			to: '+12035544464',
-			scheduleType: 'fixed',
-			sendAt: new Date(Date.UTC(2023, 0o7, 16, 12, 0o2, 0o0)),
-			'content-type': 'application/json',
-		});
-		console.log(message);
-		res.locals.newMessage = message;
-		next();
-	} catch (error) {
-		next({
-			log: 'Error in textControllersetUpText',
-			status: 400,
-			message: { err: 'Error in sending message!', error },
-		});
-	}
+  console.log('we are in the textController setupTexts');
+  const { username, plant, phoneN } = req.body;
+  if (!username || !plant ||!phoneN)
+    return next({
+      log: 'Error in textControllersetUpText',
+      status: 400,
+      message: { err: 'Error in request body!' },
+    });
+  try {
+    const message = await client.messages.create({
+      from: '+18449693100',
+      messagingServiceSid: 'MG2583b9f6099fae31d8441512947c4e1d',
+      body: `Hi, ${username}, Plant Daddy here! It is time to show your ${plant} some love!  Give your ${plant} about 1/4-1/3 of the pot's volume of water and rotate the pot for even sun exposure.  Finish off the job by whispering some sweet nothings into its leaves, and your ${plant} will keep thriving!`,
+      to: `+1${phoneN}`,
+      scheduleType: 'fixed',
+      sendAt: new Date(Date.UTC(2023, 0o7, 16, 12, 0o2, 0o0)),
+      'content-type': 'application/json',
+      plant: plant,
+    });
+    console.log(message);
+    res.locals.newMessage = message;
+    return next();
+  } catch (error) {
+    return next({
+      log: 'Error in textControllersetUpText',
+      status: 400,
+      message: { err: 'Error in sending message!', error },
+    });
+  }
 };
 
 module.exports = textController;

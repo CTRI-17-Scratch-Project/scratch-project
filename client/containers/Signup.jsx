@@ -28,7 +28,6 @@ const Signup = () => {
 
     // Testing data... please remove after post request is connected DO NOT DELETE
     // if (body.username in users || body.username === '') {
-    //   console.log(1);
     //   setState({
     //     signUpStatusCode: 2,
     //   });
