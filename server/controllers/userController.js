@@ -1,16 +1,16 @@
-const User = require("../models/userModel");
+const User = require('../models/userModel');
 
 const userController = {};
 
 userController.createUser = async (req, res, next) => {
-  console.log("we are in the createUser middleware function");
+  console.log('we are in the createUser middleware function');
   try {
     const { username } = req.body;
     if (!username)
       return next({
-        log: "Error in userController.createUser function before posting to DB",
+        log: 'Error in userController.createUser function before posting to DB',
         status: 400,
-        message: { err: "error in createUser" },
+        message: { err: 'error in createUser' },
       });
     const newUser = await User.create({
       username: username,
@@ -21,37 +21,39 @@ userController.createUser = async (req, res, next) => {
     next();
   } catch (err) {
     return next({
-      log: "Error in userController.createUser function in posting to DB",
+      log: 'Error in userController.createUser function in posting to DB',
       status: 400,
-      message: { err: "error in createUser" },
+      message: { err: 'error in createUser' },
     });
   }
 };
 
 userController.getUserPlants = async (req, res, next) => {
-  console.log("we are in the getUserPlants middleware function");
+  console.log('we are in the getUserPlants middleware function');
   try {
     const userInfo = await User.findOne({ username: req.params.name });
 
     if (!userInfo) {
       return next({
-        log: "Error in userController.getUserPlants function before posting to DB",
+        log: 'Error in userController.getUserPlants function before posting to DB',
         status: 400,
-        message: { err: "user not found" },
+        message: { err: 'user not found' },
       });
     }
-		res.locals.userInfo = userInfo;
-		return next ();
-  } catch (err) {return next({
-		log: "Error in userController.getUserPlants function before posting to DB",
-		status: 400,
-		message: { err: "error in getUserPlants" },
-	})
-}
+    res.locals.userInfo = userInfo;
+    return next();
+  } catch (err) {
+    return next({
+      log: 'Error in userController.getUserPlants function before posting to DB',
+      status: 400,
+      message: { err: 'error in getUserPlants' },
+    });
+  }
 };
 
 userController.addUserPlants = async (req, res, next) => {
-  console.log("I am in the addUserPlants middleware");
+  console.log('I am in the addUserPlants middleware');
+  console.log(req.body);
   try {
     //the keys we expect on request body
     const { username, plants, type } = req.body;
@@ -59,12 +61,12 @@ userController.addUserPlants = async (req, res, next) => {
 
     if (!username || !plants)
       return next({
-        log: "Error in userController.addUserPlants middleware function before posting to DB",
+        log: 'Error in userController.addUserPlants middleware function before posting to DB',
         status: 400,
-        message: { err: "Incorrect inputs" },
+        message: { err: 'Incorrect inputs' },
       });
     //adding a plant to the user's document
-    if (type === "add") {
+    if (type === 'add') {
       //take care of plants array here
       const userInfo = await User.findOneAndUpdate(
         { username: req.body.username },
@@ -72,11 +74,11 @@ userController.addUserPlants = async (req, res, next) => {
         { new: true }
       );
       const currentPlants = userInfo.plants.flat();
-      console.log("data returned from create: ", currentPlants);
+      console.log('data returned from create: ', currentPlants);
       res.locals.updatedPlants = currentPlants;
       return next();
     }
-    if (type === "delete") {
+    if (type === 'delete') {
       const userInfo = await User.findOneAndUpdate(
         { username: req.body.username },
         {
@@ -86,7 +88,7 @@ userController.addUserPlants = async (req, res, next) => {
         { new: true }
       );
       const currentPlants = userInfo.plants.flat();
-      console.log("data returned from delete: ", currentPlants);
+      console.log('data returned from delete: ', currentPlants);
       res.locals.updatedPlants = currentPlants;
       return next();
     }
@@ -98,9 +100,9 @@ userController.addUserPlants = async (req, res, next) => {
     // return next();
   } catch (err) {
     return next({
-      log: "Error in userController.addUserPlants function in posting to DB",
+      log: 'Error in userController.addUserPlants function in posting to DB',
       status: 400,
-      message: { err: "error in addUserPlants" },
+      message: { err: 'error in addUserPlants' },
     });
   }
 };
