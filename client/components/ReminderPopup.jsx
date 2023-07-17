@@ -19,7 +19,7 @@ const ReminderPopup = (props) => {
           ></input>
           <input type="text" placeholder="hour" id="hour"></input>
           <input
-            type="text"
+            type="password"
             placeholder="phone number"
             id="phoneNumber"
           ></input>
