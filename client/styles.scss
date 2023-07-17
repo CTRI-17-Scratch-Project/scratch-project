@@ -1,4 +1,5 @@
 // "https://i.ibb.co/njC72RX/IMG-0795.png"
+//"https://i.ibb.co/Wgb23JR/plantdaddy.png" NEW LOGO
 
 $primary-beige: rgb(244, 244, 225);
 $primary-green: #aacb69;
@@ -32,7 +33,7 @@ input {
   padding-left: 10px;
   border-radius: 5px;
   width: 80%;
-  height: 30px;
+  height: 35px;
   margin: 5px;
   border-style: none;
 }
@@ -71,6 +72,9 @@ button:hover {
     label {
       margin: 20px;
     }
+    img{
+      margin-bottom: 25px;
+    }
 
     .auth-button {
       width: 80%;
@@ -82,6 +86,7 @@ button:hover {
       color: $dark-green;
       font-weight: bold;
       border-radius: 5px;
+      
     }
 
     .auth-button:hover {
@@ -92,18 +97,21 @@ button:hover {
       width: 100%;
     }
     a .auth-button {
+      height: 30px;
       margin-left: 40px;
     }
 
-    // input {
-    //   font-size: 15px;
-    //   padding-left: 10px;
-    //   border-radius: 5px;
-    //   width: 80%;
-    //   height: 30px;
-    //   margin: 5px;
-    //   border-style: none;
-    // }
+    input {
+      font-size: 15px;
+      padding-left: 10px;
+      border-radius: 5px;
+      width: 80%;
+      height: 40px;
+      margin: 5px;
+      border-style: none;
+      padding-top: 7px;
+      padding-bottom: 7px;
+    }
 
     input:focus {
       outline: none;
@@ -132,7 +140,7 @@ nav {
   flex-direction: row;
   list-style-type: none;
   justify-content: space-between;
-  background-color: rgba($background-green, 0.6);
+  background-color: rgba($background-green, 0.5);
   border: #586e2c;
   border-radius: 10px;
 
@@ -163,8 +171,17 @@ img {
   border: none;
   width: 60%;
 }
-#signin-text{
-  
+#new-logo{
+  border: none; 
+}
+.logoDiv{
+  margin-right: 70px;
+  margin-top: -15px;
+  margin-bottom: -30px;
+}
+
+#Signin-text {
+  color: $dark-green
 }
 .plant-card {
   background-color: $dark-green;

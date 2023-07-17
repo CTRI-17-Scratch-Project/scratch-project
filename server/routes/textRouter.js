@@ -7,7 +7,7 @@ const textRouter = express.Router();
 textRouter.post(
   '/',
   textController.sendText,
-  userController.updateNotifications,
+  //userController.updateNotifications,
   (req, res) => {
     console.log('I am in the textRouter post handler function');
     console.log(res.locals.newMessage);

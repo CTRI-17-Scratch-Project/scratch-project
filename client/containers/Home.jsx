@@ -106,7 +106,7 @@ const Home = () => {
     const body = {
       username: localStorage.username,
       type: 'add',
-      plant: state.popupContent.Common_name,
+      plant: 'Steve',
       daysInterval: daysInterval,
       hour: hour,
       phoneNumber: phoneNumber
