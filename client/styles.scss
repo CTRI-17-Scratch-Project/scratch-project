@@ -1,4 +1,4 @@
-$primary-beige: rgb(235, 235, 196);
+$primary-beige: rgb(245, 245, 217);
 $primary-green: #aacb69;
 $dark-green: rgb(31, 74, 31);
 $background-green: rgb(31, 74, 31);
@@ -21,6 +21,17 @@ body {
   flex-direction: column;
   font-family: $primary-font;
   height: 100vh;
+  width: 98%;
+}
+
+input {
+  font-size: 15px;
+  padding-left: 10px;
+  border-radius: 5px;
+  width: 80%;
+  height: 30px;
+  margin: 5px;
+  border-style: none;
 }
 
 button {
@@ -29,10 +40,14 @@ button {
   border-radius: 5px;
   border: none;
   transition: transform 0.3s;
+  cursor: pointer;
 }
 
 button:active {
   transform: scale(0.95);
+}
+button:hover {
+  transform: scale(1.1);
 }
 
 .auth-container-main {
@@ -77,15 +92,15 @@ button:active {
       margin-left: 40px;
     }
 
-    input {
-      font-size: 15px;
-      padding-left: 10px;
-      border-radius: 5px;
-      width: 80%;
-      height: 30px;
-      margin: 5px;
-      border-style: none;
-    }
+    // input {
+    //   font-size: 15px;
+    //   padding-left: 10px;
+    //   border-radius: 5px;
+    //   width: 80%;
+    //   height: 30px;
+    //   margin: 5px;
+    //   border-style: none;
+    // }
 
     input:focus {
       outline: none;
@@ -95,7 +110,7 @@ button:active {
 
 nav {
   a {
-    color: $dark-green;
+    color: $primary-beige;
     text-decoration: none;
     font-size: larger;
   }
@@ -111,6 +126,9 @@ nav {
   flex-direction: row;
   list-style-type: none;
   justify-content: space-between;
+  background-color: rgba($background-green, 0.6);
+  border: #586e2c;
+  border-radius: 10px;
 
   #logo {
     justify-self: center;
@@ -220,4 +238,60 @@ img {
   color: $primary-beige;
   padding-left: 10px;
   padding-right: 10px;
+}
+
+.feed {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.myPlants {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.page-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: $background-green;
+}
+
+.btn {
+  display: inline-block;
+  outline: 0;
+  cursor: pointer;
+  padding: 5px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  vertical-align: middle;
+  border: 1px solid;
+  border-radius: 6px;
+  color: #ffffff;
+  margin: 2%;
+  background-color: $primary-green;
+  border-color: #1b1f2326;
+  box-shadow:
+    rgba(27, 31, 35, 0.04) 0px 1px 0px 0px,
+    rgba(255, 255, 255, 0.25) 0px 1px 0px 0px inset;
+  transition: 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  transition-property: color, background-color, border-color;
+  :hover {
+    background-color: $primary-beige;
+    border-color: #1b1f2326;
+    transition-duration: 0.1s;
+  }
+}
+
+.heart-button {
+  position: absolute;
+  background-color: none;
+  color: $primary-green;
+  right: 0;
+  top: 0;
 }

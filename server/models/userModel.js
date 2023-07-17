@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 const MONGO_URI = 'mongodb+srv://lash211:lash211@cluster0.hsawmf4.mongodb.net/';
 
 mongoose.connect(MONGO_URI, {
-	useNewUrlParser: true,
-	useUnifiedTopology: true,
-	dbName: 'scratch-project',
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  dbName: 'scratch-project',
 });
 
 const Schema = mongoose.Schema;
@@ -15,8 +15,9 @@ const Schema = mongoose.Schema;
 // module.exports = Plant;
 
 const userSchema = new Schema({
-	username: String,
-	plants: Array,
+  username: String,
+  plants: Array,
+  notifications: Array,
 });
 
 const User = mongoose.model('person', userSchema);

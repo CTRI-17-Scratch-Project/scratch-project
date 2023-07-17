@@ -6,25 +6,19 @@ import Popup from '../components/Popup.jsx';
 const Discover = (props) => {
   //declare plant feed state
   const [plantFeed, updatePlantFeed] = useState([]);
+  //state for popup
   const [state, setState] = React.useState({
     popupContent: {},
     popupTrigger: false,
   });
-
-  //use effect to fetch API
+  //use effect to fetch API from backend
   useEffect(() => {
-    // const response = await fetch('/api/plantAPI')
-    // const json = response.json();
-    // updatePlantFeed(json);
     const fetchFeed = async () => {
       const response = await fetch('/api/plantAPI');
       const json = await response.json();
-      //console.log(json);
       updatePlantFeed(json);
-      //console.log(json);
     };
     fetchFeed();
-
     // fetch('/api/plantAPI/')
     //   .then((res) => res.json())
     //   .then((data) => {
@@ -32,7 +26,7 @@ const Discover = (props) => {
     //     updatePlantFeed(data);
     //   });
   }, []);
-
+  //handle popup page
   const handlePlantCardClick = (data) => {
     setState({
       ...state,
@@ -40,21 +34,20 @@ const Discover = (props) => {
       popupContent: data,
     });
   };
-
+  //handle pop up close
   const handlePopupClose = () => {
     setState({
       ...state,
       popupTrigger: false,
     });
   };
-
+  //handle add plant
   const handleAddPlant = () => {
     const body = {
       username: localStorage.username,
       plants: state.popupContent,
       type: 'add',
     };
-
     fetch('/api/dbAPI', {
       method: 'PATCH',
       headers: {
@@ -66,28 +59,9 @@ const Discover = (props) => {
       return res.json();
     });
   };
-
-  // const {
-  //   Img,
-  //   Id,
-  //   Family,
-  //   Common_name,
-  //   Categories,
-  //   Origin,
-  //   Climate,
-  //   Zone,
-  //   Light_ideal,
-  //   Light_tolerated,
-  //   Watering,
-  //   Color_of_blooms,
-  //   Blooming_season,
-  //   Pruning,
-  // } = plantFeed[];
-
   //declare an array to hold feeds
   const feed = [];
   //iterate through API feed
-
   for (let i = 0; i < plantFeed.length; i++) {
     feed.push(
       <PlantCard
@@ -99,35 +73,83 @@ const Discover = (props) => {
       />
     );
   }
+  //handle previous and next pages
+  const [page, setPage] = useState(0);
+  const feedPage = feed.slice(page, page + 12);
+  const handleNextPage = () => {
+    console.log('next page!');
+    setPage(page + 12);
+  };
+  const handlePreviousPage = () => {
+    if (page > 0) setPage(page - 12);
+    console.log('previous page!');
+  };
+  //handle filter
+    const categoryList = ['Dracaena', 'Palm', 'Anthurium', 'Bromeliad', 'Aralia', 'Spathiphyllum']
+    const interestedInOptions = categoryList.map((option, idx) => {
+      return (
+        <option key={option+idx} value={option}>
+          {option}
+        </option>
+      );
+    });
+  const [categoryFilter, setCategoryFilter] = useState([])
 
-  //console.log(feed);
-  // const pop = []
-  // for (let i = 0; i < plantFeed.length; i++) {
-  //   feed.push(
-  //   <Popup
-  //   key={'popup_' +i}
-  //   name = {plantFeed[i].name}
-  //   family = {plantFeed[i].Family}
-  //   />
-  //   );
-  // }
+  
+ 
+  const handleFilter =(filterOption)=> {
+const filtered = plantFeed.filter(plant =>{
+    return plant.Categories == filterOption
+     })
+     
+  }
+  
+ // console.log(plantFeed[0].Common_name)
+
   return (
     <div>
-      <h1>Welcome to Plant Daddy!</h1>
-      <p>hello {localStorage.getItem('username')}</p>
-      Home Page
-      <p>
-        Let plant daddy take care of your plants{' '}
-        <i className="bi bi-flower2"></i>
-      </p>
-      {feed}
-      <Popup
-        content={state.popupContent}
-        trigger={state.popupTrigger}
-        handlePopupClose={handlePopupClose}
-        handleAddPlant={handleAddPlant}
-        page={'discover_page'}
-      ></Popup>
+      <div className="page-header">
+        <h1>Welcome to Plant Daddy!</h1>
+        <h3>
+          Hello {localStorage.getItem('username')}! Discover new plants to add
+          to your garden <i className="bi bi-flower2"></i>
+        </h3>
+      </div>
+      <div>
+        <div className="feed">{feedPage}</div>
+        <button
+          className="btn"
+          onClick={() => {
+            handlePreviousPage();
+          }}
+        >
+          Previous Page
+        </button>
+        <button
+          className="btn"
+          onClick={() => {
+            handleNextPage();
+          }}
+        >
+          Next Page
+        </button>
+        <label htmlFor="category-filter">Filter by Category:</label>
+        <select
+            name="category-filter"
+            id="category-filter"
+            onClick={()=>{
+              handleFilter({interestedInOptions})
+            }}
+          >{interestedInOptions}
+          </select>
+        <Popup
+          content={state.popupContent}
+          trigger={state.popupTrigger}
+          handlePopupClose={handlePopupClose}
+          handleAddPlant={handleAddPlant}
+          page={'discover_page'}
+        ></Popup>
+      </div>
     </div>
   );
 };
