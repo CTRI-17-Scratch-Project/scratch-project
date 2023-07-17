@@ -1,12 +1,24 @@
 const express = require('express');
 const textController = require('../controllers/textController');
+const userController = require('../controllers/userController');
 
 const textRouter = express.Router();
 
-textRouter.post('/', textController.sendText, (req, res, next) => {
-	console.log('I am in the textRouter post handler function');
-	return res.status(200).json(res.locals.newMessage);
+textRouter.post(
+  '/',
+  textController.sendText,
+  userController.updateNotifications,
+  (req, res) => {
+    console.log('I am in the textRouter post handler function');
+    console.log(res.locals.newMessage);
+    return res.status(200).json(res.locals.newMessage);
+  }
+);
+
+
+textRouter.patch('/', userController.updateNotifications, (req, res) => {
+  console.log('I am in the textRouter patch handler function');
+  return res.status(200).json(res.locals.updatedNotifications);
 });
-// const client = require('twilio')(accountSid, authToken);
 
 module.exports = textRouter;

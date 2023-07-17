@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Popup from './Popup';
 
@@ -20,6 +20,9 @@ const PlantCard = (props) => {
   //   Pruning,
   // } = props.feed;
  // console.log(props.feed);
+
+
+
   return (
     <div
       className="plant-card"
