@@ -15,6 +15,8 @@ const client = require('twilio')(accountSid, authToken);
 
 const textController = {};
 
+//below message is for scheduling at intervals
+
 // textController.sendText = async (req, res, next) => {
 // 	console.log('we are in the textController setupTexts');
 // 	const { username, plant, daysInterval, hour } = req.body;
