@@ -11,7 +11,7 @@ const ReminderPopup = (props) => {
           X
         </button>
         <h3>Specify reminder frequency here</h3>
-        <div >
+        <div id='reminder-input-div'>
           <input
             type="text"
             placeholder="days_interval"

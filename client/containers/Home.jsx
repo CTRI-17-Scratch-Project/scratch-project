@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 import { useNavigate } from 'react-router-dom';
 import '../styles.scss';
 import PlantCard from '../components/plantCard.jsx';
@@ -140,7 +141,7 @@ const Home = () => {
   return (
     <div>
       <div className="page-header">
-        <h1>Welcome to Plant Daddy!</h1>
+        <h2>Welcome to Plant Daddy!</h2>
         <h3>
           Hello {localStorage.getItem('username')}! Let plant daddy take care of
           your plants <i className="bi bi-flower2"></i>

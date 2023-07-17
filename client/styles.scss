@@ -1,4 +1,6 @@
-$primary-beige: rgb(245, 245, 217);
+// "https://i.ibb.co/njC72RX/IMG-0795.png"
+
+$primary-beige: rgb(244, 244, 225);
 $primary-green: #aacb69;
 $dark-green: rgb(31, 74, 31);
 $background-green: rgb(31, 74, 31);
@@ -23,6 +25,7 @@ body {
   height: 100vh;
   width: 98%;
 }
+
 
 input {
   font-size: 15px;
@@ -107,6 +110,9 @@ button:hover {
     }
   }
 }
+#reminder-input-div{
+  width: 400px;
+}
 
 nav {
   a {
@@ -144,6 +150,7 @@ nav {
   }
 }
 
+
 img {
   border-radius: 50%;
   filter: brightness(1);
@@ -152,6 +159,13 @@ img {
   border-color: #586e2c;
 }
 
+#signin-logo{
+  border: none;
+  width: 60%;
+}
+#signin-text{
+  
+}
 .plant-card {
   background-color: $dark-green;
   border: 1px solid $dark-green;
@@ -162,6 +176,10 @@ img {
   transition: transform 0.3s;
   color: $primary-beige;
   margin: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 
 .plant-card:hover {
@@ -261,7 +279,7 @@ img {
   color: $background-green;
 }
 
-.btn {
+.btn, .filter{
   display: inline-block;
   outline: 0;
   cursor: pointer;
@@ -272,7 +290,7 @@ img {
   vertical-align: middle;
   border: 1px solid;
   border-radius: 6px;
-  color: #ffffff;
+  color: $background-green;
   margin: 2%;
   background-color: $primary-green;
   border-color: #1b1f2326;
@@ -288,10 +306,4 @@ img {
   }
 }
 
-.heart-button {
-  position: absolute;
-  background-color: none;
-  color: $primary-green;
-  right: 0;
-  top: 0;
-}
+

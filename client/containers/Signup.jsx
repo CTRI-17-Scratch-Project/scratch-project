@@ -67,6 +67,7 @@ const Signup = () => {
   return (
     <div className="auth-container-main">
       <div className="auth-container">
+      <img id="signin-logo" src="https://i.ibb.co/njC72RX/IMG-0795.png" alt="" />
         <label>Create Account</label>
         <input type="text" placeholder="username" id="username"></input>
         <input type="password" placeholder="password" id="password"></input>

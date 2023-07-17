@@ -38,6 +38,8 @@ const Login = () => {
   return (
     <div className='auth-container-main'>
       <div className="auth-container">
+        <img id="signin-logo" src="https://i.ibb.co/njC72RX/IMG-0795.png" alt="" />
+        <h2 id='Signin-text'>Plant Daddy</h2>
         <label>Sign In</label>
         <input type="text" placeholder="username" id="username"></input>
         <input type="password" placeholder="password" id="password"></input>
