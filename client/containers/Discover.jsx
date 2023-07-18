@@ -4,7 +4,8 @@ import PlantCard from '../components/plantCard.jsx';
 import Popup from '../components/Popup.jsx';
 
 const Discover = (props) => {
-  //declare plant feed state
+  //declare plantFeed state and set it to an empty array
+  //plant feed will be the data from the public API
   const [plantFeed, updatePlantFeed] = useState([]);
   //state for popup
   const [state, setState] = React.useState({
@@ -13,6 +14,7 @@ const Discover = (props) => {
     added: false
   });
   //use effect to fetch API from backend
+ //then using updatePlantFeed to update the state 
   useEffect(() => {
     const fetchFeed = async () => {
       const response = await fetch('/api/plantAPI');
@@ -20,6 +22,7 @@ const Discover = (props) => {
       updatePlantFeed(json);
     };
     fetchFeed();
+    //this is using .then method which also works
     // fetch('/api/plantAPI/')
     //   .then((res) => res.json())
     //   .then((data) => {
@@ -29,7 +32,6 @@ const Discover = (props) => {
   }, []);
   //handle popup page
   const handlePlantCardClick = (data) => {
-
     setState({
       ...state,
       added: true,
@@ -64,7 +66,7 @@ const Discover = (props) => {
   };
   //declare an array to hold feeds
   const feed = [];
-  //iterate through API feed
+  //iterate through API feed (plantFeed) and push it into feed
   for (let i = 0; i < plantFeed.length; i++) {
     feed.push(
       <PlantCard
@@ -78,9 +80,8 @@ const Discover = (props) => {
   }
   //handle previous and next pages
   const [page, setPage] = useState(0);
-
+//array slice feed - feedPages is what will be returned
   const feedPage = feed.slice(page, page + 12);
-
   //handle page changes
   const handleNextPage = () => {
     console.log('next page!');
@@ -90,7 +91,8 @@ const Discover = (props) => {
     if (page > 0) setPage(page - 12);
     console.log('previous page!');
   };
-  //handle filter
+
+  //declare filter options array
   const categoryList = [
     'Category',
     'Dracaena',
@@ -108,6 +110,7 @@ const Discover = (props) => {
       </option>
     );
   });
+    //handle filter
   const handleFilter = (e) => {
     const idx = e.target.value;
     const filtered = plantFeed.filter((plant) => {
@@ -117,7 +120,7 @@ const Discover = (props) => {
     updatePlantFeed(filtered);
   };
 
-  // console.log(plantFeed[0].Common_name)
+
 
   return (
     <div>

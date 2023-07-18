@@ -20,6 +20,7 @@ const Home = () => {
 
   const navigate = useNavigate();
 
+  // on load - fetch user data from server 
   React.useEffect(() => {
     if (localStorage.getItem('username') === null) {
       return navigate('/login');
@@ -45,7 +46,8 @@ const Home = () => {
         }
       });
   }, []);
-
+  
+  // handles X button on pop up close
   const handlePopupClose = () => {
     setState({
       ...state,
@@ -61,6 +63,7 @@ const Home = () => {
     });
   };
 
+  // handles delete button on plant card
   const handlePlantDelete = () => {
     const body = {
       username: localStorage.username,
@@ -84,6 +87,7 @@ const Home = () => {
       });
   };
 
+  // handles click on plant card
   const handleReminderPopupOpen = () => {
     setpopupState({
       popupTrigger: true,
@@ -91,12 +95,14 @@ const Home = () => {
     handlePopupClose();
   };
 
+  // handles X button on corner of popup
   const handleReminderPopupClose = () => {
     setpopupState({
       popupTrigger: false,
     });
   };
 
+  // Handles submitting form to receive notifications
   const handleReminderPopupSubmit = () => {
     // takes e.target.param and submit to server using a fetch request
     const daysInterval = document.querySelector('#days_interval').value;
@@ -106,7 +112,7 @@ const Home = () => {
     const body = {
       username: localStorage.username,
       type: 'add',
-      plant: 'Steve',
+      plant: state.popupContent.Common_name[0],
       daysInterval: daysInterval,
       hour: hour,
       phoneNumber: phoneNumber

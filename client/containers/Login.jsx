@@ -16,6 +16,7 @@ const Login = () => {
     loginFailed: false,
   });
 
+  // handles log in click
   const onFormSubmit = (e) => {
     e.preventDefault();
 
@@ -49,6 +50,8 @@ const Login = () => {
         <Link to="/signup">
           <button className="auth-button">CREATE ACCOUNT</button>
         </Link>
+
+        {/* condition that determines user feedback message */}
         {(() => {
           if (state.loginFailed === true) {
             return (

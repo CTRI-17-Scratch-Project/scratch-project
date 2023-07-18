@@ -3,6 +3,7 @@ const axios = require('axios');
 const apiController = {};
 
 apiController.getPlantData = async (req, res, next) => {
+  //fetching from rapid API
   console.log('We are in the getPlantData controller');
   try {
     const response = await axios.request(
@@ -19,6 +20,7 @@ apiController.getPlantData = async (req, res, next) => {
     const data = response.data;
     //console.log(data);
     res.locals.plantData = data;
+    //storing all info from API onto plantData
     next();
   } catch (error) {
     console.error(error);
@@ -50,6 +52,7 @@ apiController.handlePlantData = (req, res, next) => {
         };
         prettierData.push(obj);
       }
+      //storing the "cleaned up" data that's been passed from previous middleware onto res.locals
       res.locals.plantData = prettierData;
       return next();
     } catch (error) {
