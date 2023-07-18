@@ -4,18 +4,11 @@ const cron = require("node-cron");
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 //hard coded them in as env variables were giving us a headache
-const client = require("twilio")(
-  "ACb85b03fe9fcbe43adc47d0c4e875c3aa",
-  "4a225d87f3ce3f404383e06e041035bb"
-);
-
-// const apiKey = process.env.TWILIO_API_KEY;
-// const apiSecret = process.env.TWILIO_API_SECRET;
-// const client = require('twilio')(
-// 	'SKcc5096f507149b66c1ed0111545cae88',
-// 	'cNKDpQo6bg25vujmTzsqT7r80ff69jFF',
-// 	{ accountSid: 'AC63f9f3b4e15df2a836f2dbdb0e7269b4' }
+// INSERT ACCOUNTSID AND AUTH TOKEN HERE
+// const client = require("twilio")(
 // );
+
+
 
 const textController = {};
 
@@ -35,7 +28,7 @@ const textController = {};
 // 		async () => {
 // 			try {
 // 				const message = await client.messages.create({
-// 					from: '+18449693100',
+// 					from: '+NUM',
 // 					messagingServiceSid: 'MG2583b9f6099fae31d8441512947c4e1d',
 // 					body: `Hi, ${username}, Plant Daddy here! It is time to show your ${plant} some love!  Give your ${plant} about 1/4-1/3 of the pot's volume of water and rotate the pot for even sun exposure.  Finish off the job by whispering some sweet nothings into its leaves, and your ${plant} will keep thriving!`,
 // 					to: '+12035544464',
