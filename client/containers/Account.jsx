@@ -4,7 +4,6 @@ import { useNavigate, Link } from 'react-router-dom';
 const Account = () => {
   useEffect(() => {
     // pull user notifications from db
-    //
   }, []);
 
   const navigate = useNavigate();

@@ -15,6 +15,7 @@ const Signup = () => {
     signUpStatusCode: 0,
   });
 
+  // Takes user input data and sends request to server, adding to DB
   const onFormSubmit = (e) => {
     e.preventDefault();
 
@@ -42,6 +43,7 @@ const Signup = () => {
       username: username,
       plants: [],
     };
+
 
     fetch('/api/dbAPI', {
       method: 'POST',
@@ -83,6 +85,8 @@ const Signup = () => {
         <Link to="/login">
           <button className="auth-button">SIGN IN</button>
         </Link>
+
+        {/* Conditionals for displaying messages  */}
         {(() => {
           if (state.signUpStatusCode === 1) {
             return (
